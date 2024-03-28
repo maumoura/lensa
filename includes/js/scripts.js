@@ -263,53 +263,11 @@ var loadingBox = $('<div class="loading-box">').text('Loading...').appendTo('bod
 loadingBox.bind( 'ajaxSend', function(res, req){
   $(this).text(ajaxMessage).delay(100).animate({ top: -1 });
 })
-.bind( 'ajaxComplete', function(res, req){
+.on( 'ajaxComplete', function(res, req){
   var boxHeight = $(this).outerHeight();
   $(this).text( ajaxMessage ).delay(1000).animate({ top: -boxHeight-5 });
 });
 
-
-/* Infinite Scroll
-------------------------------------------------------------------- */
-$.extend($.infiniteScroll.prototype,{
-
-  /* --- Show Done Message --- */
-  _showdonemsg_manual_trigger: function infscr_showdonemsg_manual_trigger() {
-    var opts = this.options;
-
-    ajaxMessage = "No More Post";
-    $(this.element).infiniteScroll('destroy');
-  }
-});
-
-
-(function(){
-  var $container = $('.gallery-list');
-
-  /*$container.infinitescroll({
-    behaviour: 'manual_trigger',
-    navSelector: '.nav-previous',
-    nextSelector: '.nav-previous a',
-    itemSelector: '.gallery-item',
-    loading: {
-        msg: ""
-      }
-    },
-    // Trigger Masonry as a callback
-    function( newElements ) {
-      // hide new items while they are loading
-      var $newElems = $( newElements ).css({ opacity: 0 });
-      // ensure that images load before adding to masonry layout
-      $newElems.imagesLoaded(function(){
-        // show elems now they're ready
-        $newElems.animate({ opacity: 1 });
-        $container.masonry( 'appended', $newElems, true );
-        setFooterPos();
-        fancyInit( $newElems.find('a[rel^=lightbox]') );
-      });
-    }
-  );*/
-})();
 
 });
 })(jQuery);
