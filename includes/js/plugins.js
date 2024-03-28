@@ -1666,6 +1666,9 @@ var utils = {};
 // extends objects
 utils.extend = function( a, b ) {
   for ( var prop in b ) {
+    if (b[prop] == undefined) {
+      console.log("Error is coming for ", b[prop], b)
+    }
     a[ prop ] = b[ prop ];
   }
   return a;
