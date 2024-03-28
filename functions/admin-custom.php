@@ -340,7 +340,7 @@ function colabs_custom_enqueue($hook) {
         wp_enqueue_script( 'jquery-ui-core' );
         wp_register_script( 'jquery-ui-datepicker', get_template_directory_uri() . '/functions/js/ui.datepicker.js', array( 'jquery-ui-core' ));
         wp_enqueue_script( 'jquery-ui-datepicker' );
-        wp_register_script( 'jquery-input-mask', get_template_directory_uri() . '/functions/js/jquery.maskedinput-1.2.2.js', array( 'jquery' ));
+        wp_register_script( 'jquery-input-mask', get_template_directory_uri() . '/functions/js/jquery.maskedinput-1.4.1.js', array( 'jquery' ));
         wp_enqueue_script( 'jquery-input-mask' );
     }
 }
