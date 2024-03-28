@@ -1670,9 +1670,7 @@ utils.extend = function( a, b ) {
       a[ prop ] = b[ prop ];
     }
     catch(err) {
-      console.log("a", a);
-      console.log("b", b);
-      console.trace();
+      console.log("Error trying to set property %s of a", prop, a);
     }
   }
   return a;
@@ -2588,8 +2586,11 @@ proto._create = function() {
   // elements that affect layout, but are not laid out
   this.stamps = [];
   this.stamp( this.options.stamp );
-  // set container style
-  utils.extend( this.element.style, this.options.containerStyle );
+  // set container style (only if the element has a style)
+  if (this.element.style) { 
+    utils.extend( this.element.style, this.options.containerStyle );
+  }
+  
 
   // bind resize method
   var canBindResize = this._getOption('resize');
@@ -2858,7 +2859,10 @@ proto._setContainerMeasure = function( measure, isWidth ) {
   }
 
   measure = Math.max( measure, 0 );
-  this.element.style[ isWidth ? 'width' : 'height' ] = measure + 'px';
+  if (this.element.style) {
+    this.element.style[ isWidth ? 'width' : 'height' ] = measure + 'px';
+  }
+  
 };
 
 /**
