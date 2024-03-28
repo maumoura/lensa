@@ -40,12 +40,12 @@
      */
     
     handleEvents: function () {
-    	$( 'a.colabs-typography-preview-button' ).live( 'click', function () {
+		$(document).on('click', 'a.colabs-typography-preview-button', function () {
     		colabsTypographyPreview.generatePreview( $( this ) );
     		return false;
     	});
-    	
-    	$( 'a.preview_remove' ).live( 'click', function () {
+
+		$(document).on('click', 'a.preview_remove', function () {
     		colabsTypographyPreview.closePreview( $( this ) );
     		return false;
     	});

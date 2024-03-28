@@ -15,12 +15,10 @@
 /*-----------------------------------------------------------------------------------*/
   
     removeFile: function () {
-     
-     $( '.mlu_remove').live( 'click', function(event) { 
+     $(document).on('click', '.mlu_remove', function(event) { 
         $(this).hide();
         $(this).parents().parents().children( '.upload').attr( 'value', '' );
         $(this).parents( '.screenshot').slideUp();
-        
         return false;
       });
       
@@ -41,10 +39,10 @@
         $(this).addClass( 'file').css( 'opacity', 0); //set to invisible
         $(this).parent().append($( '<div class="fake_file" />').append($( '<input type="text" class="upload" />').attr( 'id',$(this).attr( 'id')+'_file')).val( $(this).val() ).append(uploadbutton));
  
-        $(this).bind( 'change', function() {
+        $(this).on( 'change', function() {
           $( '#'+$(this).attr( 'id')+'_file').val($(this).val());
         });
-        $(this).bind( 'mouseout', function() {
+        $(this).on( 'mouseout', function() {
           $( '#'+$(this).attr( 'id')+'_file').val($(this).val());
         });
       });
@@ -67,8 +65,8 @@
           formID,
           btnContent = true;
 
-      // On Click
-      $( 'input.upload_button').live( "click", function () {
+      // On 
+      $(document).on('click', 'input.upload_button', function () {
         formfield = $(this).prev( 'input').attr( 'name' );
         formID = $(this).attr( 'rel' );
         

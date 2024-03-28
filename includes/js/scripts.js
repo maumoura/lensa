@@ -216,8 +216,6 @@ $('input, textarea').placeholder();
 // Jquery Likes
 var ajaxMessage = 'Loading...';
 
-//$('.entry-likes').live('click', function(e){
-// CHANGED: Live is removed in JQuery
 $(document).on('click', '.entry-likes', function(e){
   e.preventDefault();
   var 

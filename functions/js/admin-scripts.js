@@ -47,7 +47,7 @@ jQuery(function () {
 
 var i = 0; //initialize
 var int = 0; //IE fix
-jQuery(window).bind("load", function() { //The load event will only fire if the entire page or document is fully loaded
+jQuery(window).on("load", function() { //The load event will only fire if the entire page or document is fully loaded
     var int = setInterval("doThis(i)",500); //500 is the fade in speed in milliseconds
 });
 

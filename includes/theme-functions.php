@@ -57,7 +57,7 @@ add_action("admin_init", "themes_admin_init_colabs_page_style");
         changeSelect();
       });
       
-      jQuery('#page_template').live('change', function(){
+      jQuery(document).on('change', '#page_template', function)
         colabs_load_style(this);
       });
       
@@ -69,7 +69,7 @@ add_action("admin_init", "themes_admin_init_colabs_page_style");
         }
       }
       
-      jQuery('#meta_style_gallery').live('change', function(){
+      jQuery(document).on('change', '#meta_style_gallery', function)
         changeSelect();
       });
       
