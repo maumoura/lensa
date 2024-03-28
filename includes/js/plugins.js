@@ -1672,6 +1672,7 @@ utils.extend = function( a, b ) {
     catch(err) {
       console.log("a", a);
       console.log("b", b);
+      console.trace();
     }
   }
   return a;
@@ -2849,7 +2850,7 @@ proto._setContainerMeasure = function( measure, isWidth ) {
 
   var elemSize = this.size;
   // add padding and border width if border box
-  if ( elemSize.isBorderBox ) {
+  if ( elemSize && elemSize.isBorderBox ) {
     measure += isWidth ? elemSize.paddingLeft + elemSize.paddingRight +
       elemSize.borderLeftWidth + elemSize.borderRightWidth :
       elemSize.paddingBottom + elemSize.paddingTop +
