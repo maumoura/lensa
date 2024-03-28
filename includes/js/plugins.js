@@ -5613,19 +5613,6 @@ return Outlayer;
   }
 }));
 
-/*
-  --------------------------------
-  Infinite Scroll
-  --------------------------------
-  + https://github.com/paulirish/infinitescroll
-  + version 2.0b2.110713
-  + Copyright 2011 Paul Irish & Luke Shumard
-  + Licensed under the MIT license
-  
-  + Documentation: http://infinite-scroll.com/
-  
-*/
-
 /*!
  * Infinite Scroll PACKAGED v4.0.1
  * Automatically add next page

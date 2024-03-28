@@ -271,14 +271,14 @@ loadingBox.bind( 'ajaxSend', function(res, req){
 
 /* Infinite Scroll
 ------------------------------------------------------------------- */
-$.extend($.infinitescroll.prototype,{
+$.extend($.infiniteScroll.prototype,{
 
   /* --- Show Done Message --- */
   _showdonemsg_manual_trigger: function infscr_showdonemsg_manual_trigger() {
     var opts = this.options;
 
     ajaxMessage = "No More Post";
-    $(this.element).infinitescroll('destroy');
+    $(this.element).infiniteScroll('destroy');
   }
 });
 
