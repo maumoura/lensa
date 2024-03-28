@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="row">
+<div class="lensarow">
     <header class="page-heading block-background block-inner">
       <h3><?php _e("Single","colabsthemes"); echo ' '.get_post_type(); ?></h3>
 	  <div class="minimize"></div>

@@ -289,7 +289,7 @@ ul ul .sf-sub-indicator {
   margin-top: 3px;
 }
 
-.nav-collapse.collapse {
+.nav-collapse.lensacollapse {
   height: auto;
   overflow: visible;
 }
@@ -467,7 +467,7 @@ ul ul .sf-sub-indicator {
   display: inline;
 }
 
-.slider-container .row {
+.slider-container .lensarow {
   position: static;
 }
 
@@ -1719,11 +1719,11 @@ blockquote.right {
     padding: 5px 20px;
   }
 
-  .nav-collapse.collapse .top-nav {
+  .nav-collapse.lensacollapse .top-nav {
     margin-bottom: 20px;
   }
 
-  .nav-collapse, .nav-collapse.collapse {
+  .nav-collapse, .nav-collapse.lensacollapse {
     height: 0;
     overflow: hidden;
   }

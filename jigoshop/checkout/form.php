@@ -22,7 +22,7 @@ $get_checkout_url = apply_filters( 'jigoshop_get_checkout_url', jigoshop_cart::g
 
 <form name="checkout" method="post" class="checkout" action="<?php echo esc_url( $get_checkout_url ); ?>">
 
-	<div class="col2-set row" id="customer_details">
+	<div class="col2-set lensarow" id="customer_details">
 		<div class="col12">
 
 			<?php do_action('jigoshop_checkout_billing'); ?>

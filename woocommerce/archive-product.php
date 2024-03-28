@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header( 'shop' );?>
 
-<div class="row">
+<div class="lensarow">
 	
 	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 	  <header class="page-heading block-background block-inner">

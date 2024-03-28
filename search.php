@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="row">
+<div class="lensarow">
     <header class="page-heading block-background block-inner">
       <h3><?php printf( __( 'Search Results for: %s', 'colabsthemes' ), '"' . get_search_query() . '"' ); ?></h3>
 	  <div class="minimize"></div>

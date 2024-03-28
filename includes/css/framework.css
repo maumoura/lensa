@@ -144,7 +144,7 @@ a:hover {
   padding-right: 20px;
 }
 
-.row {
+.lensarow {
   width: 100%;
   min-width: 0;
   margin: 0 auto;
@@ -1450,7 +1450,7 @@ table tbody:first-child tr:first-child td {
   opacity: 100;
 }
 
-.collapse {
+.lensacollapse {
   position: relative;
   height: 0;
   overflow: hidden;
@@ -1459,7 +1459,7 @@ table tbody:first-child tr:first-child td {
   -moz-transition: height 0.35s ease;
   transition: height 0.35s ease;
 }
-.collapse.in {
+.lensacollapse.in {
   height: auto;
 }
 
@@ -2570,14 +2570,14 @@ ul.icons li .icon-large:before {
   content: "\f52f";
 }
 
-.clearfix, .row {
+.lensaclearfix, .lensarow {
   *zoom: 1;
 }
-.clearfix:before, .row:before, .clearfix:after, .row:after {
+.lensaclearfix:before, .lensarow:before, .lensaclearfix:after, .lensarow:after {
   display: table;
   content: "";
 }
-.clearfix:after, .row:after {
+.lensaclearfix:after, .lensarow:after {
   clear: both;
 }
 

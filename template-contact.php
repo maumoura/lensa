@@ -106,7 +106,7 @@ jQuery(document).ready(function() {
 //-->!]]>
 </script>
 
-<div class="row">
+<div class="lensarow">
     <header class="page-heading block-background block-inner">
       <h3><?php the_title(); ?></h3>
 	  <div class="minimize"></div>

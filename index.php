@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="row">
+<div class="lensarow">
     <div class="slide-info-wrapper col10">
       <ul class="slide-nav">
         <li><a class="slide-prev" href="#"><i class="icon-chevron-left"></i></a></li>

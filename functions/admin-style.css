@@ -2,18 +2,18 @@
 /* ColorLabs Admin Panel Styles */
 /*============================================================================*/
 
-.clearfix:after,
-.clearfix:before,
+.lensaclearfix:after,
+.lensaclearfix:before,
 #header-nav:after,
 #header-nav:before {
 	content: '';
 	display: table;
 }
-.clearfix:after,
+.lensaclearfix:after,
 #header-nav:after {
 	clear: both;
 }
-.clearfix,
+.lensaclearfix,
 #header-nav:after {
 	zoom: 1;
 }

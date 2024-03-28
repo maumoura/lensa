@@ -42,7 +42,7 @@
 
 <body <?php body_class(); ?>>
   <header class="header-section container">
-  <div class="row">
+  <div class="lensarow">
     <div class="branding column col4">
       <h1 class="logo">
         <a href="<?php echo $site_url;?>">
@@ -64,7 +64,7 @@
       <span class="icon-bar"></span>    
     </a>    
 
-    <nav class="nav-collapse collapse column col8">   
+    <nav class="nav-collapse lensacollapse column col8">   
       <?php wp_nav_menu( array( 'theme_location' => 'primary', 'container_class' => 'top-nav', 'container' => 'nav', 'menu_class' => '', 'fallback_cb'=>'colabs_nav_fallback') );?><!-- .topnav -->    
     </nav><!-- .nav-collapse -->      
   </div></header><!-- .header-section -->

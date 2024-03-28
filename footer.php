@@ -7,7 +7,7 @@
 </div>
 
 <footer class="footer-section container">
-  <div class="row">
+  <div class="lensarow">
     <?php colabs_social_net("social-links") ?>
     <div class="copyrights"><?php colabs_credit(); ?></div>
   </div>

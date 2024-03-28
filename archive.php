@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="row">
+<div class="lensarow">
     <header class="page-heading block-background block-inner">
       <h3><?php wp_title(' ', true,'right'); ?></h3>
 	  <div class="minimize"></div>

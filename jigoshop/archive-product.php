@@ -35,7 +35,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header(); ?>
-  <div class="row">
+  <div class="lensarow">
     <header class="page-heading block-background block-inner">
       <h3><?php _e("Archive","colabsthemes"); echo ' '.get_post_type(); ?></h3>
 	  <div class="minimize"></div>
