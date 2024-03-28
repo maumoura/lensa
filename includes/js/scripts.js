@@ -144,7 +144,7 @@ var $listMasonry = $('.gallery-list');
 
 $listMasonry.css('opacity', 0);
 $listMasonry.imagesLoaded(function(){
-  $(this).masonry({
+  $(this).masonrylensa({
     itemSelector: '.gallery-item',
      isAnimated: true
   });

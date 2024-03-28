@@ -148,7 +148,7 @@ if (!function_exists( 'colabs_output_custom_favicon')) {
 		$favicon = apply_filters( 'colabs_custom_favicon', $favicon );
 		if( $favicon != '' ) {
 			echo "<!-- Custom Favicon -->\n";
-	        echo '<link rel="shortcut icon" href="' .  esc_url( $favicon )  . '"/>' . "\n\n";
+	        echo '<link rel="shortcut icon" href="' .  set_url_scheme(esc_url( $favicon ))  . '"/>' . "\n\n";
 	    }
 	} // End colabs_output_custom_favicon()
 }
