@@ -1,3 +1,13 @@
+jQuery.browser = {};
+(function () {
+    jQuery.browser.msie = false;
+    jQuery.browser.version = 0;
+    if (navigator.userAgent.match(/MSIE ([0-9]+)./)) {
+        jQuery.browser.msie = true;
+        jQuery.browser.version = RegExp.$1;
+    }
+})();
+
 (function($){
 
 $(document).ready(function(){
@@ -205,7 +215,10 @@ $('input, textarea').placeholder();
 ------------------------------------------------------------------- */
 // Jquery Likes
 var ajaxMessage = 'Loading...';
-$('.entry-likes').live('click', function(e){
+
+//$('.entry-likes').live('click', function(e){
+// CHANGED: Live is removed in JQuery
+$(document).on('click', '.entry-likes', function(e){
   e.preventDefault();
   var 
     likeData  = $(this).data('like'),

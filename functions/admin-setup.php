@@ -210,7 +210,7 @@ if (!function_exists( 'colabs_output_custom_css')) {
 		// Custom.css insert
 		echo "<!-- Custom Stylesheet -->\n";
 		$upload_dir = wp_upload_dir();
-		echo '<link href="'. $upload_dir['baseurl'] .'/'.strtolower(COLABS_THEME_NAME).'-custom/custom.css" rel="stylesheet" type="text/css" />'."\n";
+		echo '<link href="'. set_url_scheme($upload_dir['baseurl']) .'/'.strtolower(COLABS_THEME_NAME).'-custom/custom.css" rel="stylesheet" type="text/css" />'."\n";
 	} // End colabs_output_custom_css()
 }
 /*-----------------------------------------------------------------------------------*/
