@@ -113,3 +113,8 @@ if(is_admin()){
 		update_option('jigoshop_shop_small_h','200');
 	}
 }
+
+function seopress_theme_slug_setup() {
+    add_theme_support( 'title-tag' );
+}
+add_action( 'after_setup_theme', 'seopress_theme_slug_setup' );
