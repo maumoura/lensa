@@ -115,61 +115,88 @@ function colabsthemes_framework_update_page_set(){
   </form>
   <?php 
 };
+
+function lensa_automatic_github_updates($data) {
+	// Theme information
+	$theme   = get_stylesheet(); // Folder name of the current theme
+	$current = wp_get_theme()->get('Version'); // Get the version of the current theme
+	// GitHub information
+	$user = 'maumoura'; // The GitHub username hosting the repository
+	$repo = 'lensa'; // Repository name as it appears in the URL
+	// Get the latest release tag from the repository. The User-Agent header must be sent, as per
+	// GitHub's API documentation: https://developer.github.com/v3/#user-agent-required
+	$file = @json_decode(@file_get_contents('https://api.github.com/repos/'.$user.'/'.$repo.'/releases/latest', false,
+		stream_context_create(['http' => ['header' => "User-Agent: ".$user."\r\n"]])
+	));
+	if($file) {
+		$update = filter_var($file->tag_name, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+		// Only return a response if the new version number is higher than the current version
+		if($update > $current) {
+			$data->response[$theme] = array(
+				'theme'       => $theme,
+				// Strip the version number of any non-alpha characters (excluding the period)
+				// This way you can still use tags like v1.1 or ver1.1 if desired
+				'new_version' => $update,
+				'url'         => 'https://github.com/'.$user.'/'.$repo,
+				'package'     => $file->assets[0]->browser_download_url,
+			);
+		}
+	}
+	return $data;
+}
+// Automatic theme updates from the GitHub repository
+add_filter('pre_set_site_transient_update_themes', 'lensa_automatic_github_updates', 100, 1);
+
 function colabsthemes_themes_update_page_set(){
 	global $wp_filesystem, $message;
-	
-	$theme_name = get_option( 'colabs_themename' );
-	$storefront_theme = colabs_get_fw_version('http://colorlabsproject.com/updates/'.strtolower($theme_name).'/changelog.txt'); 
-	$check_theme_update = version_compare( $storefront_theme, COLABS_THEME_VER, '>' );
-	$details_url = add_query_arg(array('TB_iframe' => 'true', 'width' => 1024, 'height' => 800), 'http://colorlabsproject.com/updates/'.strtolower($theme_name).'/changelog.txt');
-	
-	$backup = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update','theme_backup'=>'true' )) );
-	if($check_theme_update==1){
-			printf( __('<h3>An updated version of %1$s is available.</h3>','colabsthemes'), $theme_name );
-			printf( __('<p>You can update to <a href="%3$s" title="%1$s" class="thickbox">%1$s %2$s</a> automatically.</p><p> To use the automatic update and backup feature, cURL must be enabled on your hosting. If cURL is disabled, please contact your hosting.</p><p>Updating this theme will lose any customizations you have made. We recommend backing up your theme files before updating.</p><p>Please backup your theme by clicking the Backup button before updating your theme. Backup (.zip) will be stored in <code>wp-content/themes/</code>.</p>'), $theme_name,$storefront_theme, $details_url );
 
-			?>
-			
-			<form method="post"  enctype="multipart/form-data" id="colabsform" name="backup" class="colabs-backup-form not-ajax">
-				<p><input type="submit" name="colabs_theme_backup" value="Backup" class="button" />
-				<input type="hidden" value="true" name="theme_backup">
-				<input type="hidden" name="colabs_ftp_cred" value="<?php echo esc_attr(serialize($_POST)); ?>" /></p>
-			</form>
-			
-			<p><?php _e('Please login with your ColorLabs account to updating your theme.','colabsthemes');?></p>
-			<form method="post"  enctype="multipart/form-data" id="colabsform" name="login" class="colabs-login-form not-ajax">
-				<p>
-					<label class="element-title" for="login"><?php _e('E-Mail Address:','colabsthemes');?></label> 
-					<input id="login" name="amember_login" size="15" value="" type="text">
-				</p>
-				<p>
-					<label class="element-title" for="pass"><?php _e('Password:','colabsthemes');?></label> 
-					<input id="pass" name="amember_pass" size="15" type="password">
-				</p>
-				<p style="margin-top: 25px;">
-				<input type="submit" name="colabs_theme_login" value="Update" class="button" />
-				<input type="hidden" value="true" name="member_login">	
-				<input type="hidden" name="colabs_ftp_cred" value="<?php echo esc_attr(serialize($_POST)); ?>" />
-				&nbsp;&nbsp;<?php _e('<a href="http://colorlabsproject.com/member/member/#am-forgot-block" target="_blank">Forgot Password?</a>','colabsthemes');?>
-				</p>			
-			</form>
-			
-		
-	<?php
-	}else{
-			printf( __('<h3>You have the latest version of %1$s.</h3><p>&rarr; <a href="%2$s" class="thickbox" title="%1$s">View version %3$s details</a></p>'), $theme_name, $details_url, $storefront_theme );
+	$theme   = get_stylesheet(); // Folder name of the current theme
+	$theme_obj = wp_get_theme();
+	$current = $theme_obj->get('Version'); // Get the version of the current theme
+	printf( __('<h3>The current theme is %1$s.</h3>','colabsthemes'), $theme );
+	printf( __('<h3>The current version is %1$s.</h3>','colabsthemes'), $current );
+
+	// GitHub information
+	$user = 'maumoura'; // The GitHub username hosting the repository
+	$repo = 'lensa'; // Repository name as it appears in the URL
+
+	// Get the latest release tag from the repository. The User-Agent header must be sent, as per
+	// GitHub's API documentation: https://developer.github.com/v3/#user-agent-required
+	$file = @json_decode(@file_get_contents('https://api.github.com/repos/'.$user.'/'.$repo.'/releases/latest', false,
+		stream_context_create(['http' => ['header' => "User-Agent: ".$user."\r\n"]])
+	));
+
+	$backup = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update','theme_backup'=>'true' )) );
+
+	if ($file) {
+		$update = filter_var($file->tag_name, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+		$changelog_url = $file->html_url;
+
+		// Only return a response if the new version number is higher than the current version
+		if ($update > $current) {
+			printf( __('<h3>An updated version of %1$s is available.</h3>','colabsthemes'), $theme );
+			printf( __('<p>You can update to <a href="%3$s" title="%1$s" target="_blank">%1$s %2$s</a> automatically.</p>
+			<p>Click <a href="update-core.php">here</a> to use the automatic update feature.</p>
+			<p>Updating this theme will lose any customizations you have made. We recommend backing up your theme files before updating.</p>
+			<p>Please backup your theme by clicking the Backup button below. The backup (a .zip file) will be stored in <code>wp-content/themes/</code>.</p>'), $theme,$update, $changelog_url );
+		} else {
+			printf( __('<h3>You have the latest version of %1$s.</h3><p>&rarr; <a href="%2$s" target="_blank" title="%1$s">View version %3$s details</a></p>'), $theme, $changelog_url, $current );
 			printf( __('<p>Click the Backup button to back up your theme files. Backup (.zip) will be stored in <code>wp-content/themes/</code></p>'), $backup );
-			?>
-			<p style="margin-top: 30px;">
-			<form method="post"  enctype="multipart/form-data" id="colabsform" name="login" class="colabs-login-form not-ajax">
-				<input type="submit" name="colabs_theme_backup" value="Backup" class="button" />
-				<input type="hidden" value="true" name="theme_backup">
-				<input type="hidden" name="colabs_ftp_cred" value="<?php echo esc_attr(serialize($_POST)); ?>" />
-			</form>
-			</p>
-			<?php
+		}
+	} else {
+		printf( __('<h3>Could not contact update website to verify if an update is available.</h3>','colabsthemes') );
 	}
+	?>
+	<p style="margin-top: 30px;">
+	<form method="post"  enctype="multipart/form-data" id="colabsform" name="login" class="colabs-login-form not-ajax">
+		<input type="submit" name="colabs_theme_backup" value="Backup" class="button" />
+		<input type="hidden" value="true" name="theme_backup">
+		<input type="hidden" name="colabs_ftp_cred" value="<?php echo esc_attr(serialize($_POST)); ?>" />
+	</form>
+	</p>
+	<?php
 }
+
 function colabsthemes_framework_update_check(){
     $data = array( 'update' => false, 'version' => '1.0.0', 'status' => 'none' );
     $data['localversion'] = get_option( 'colabs_framework_version' );
