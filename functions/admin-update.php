@@ -128,7 +128,7 @@ function lensa_automatic_github_updates($data) {
 	$file = @json_decode(@file_get_contents('https://api.github.com/repos/'.$user.'/'.$repo.'/releases/latest', false,
 		stream_context_create(['http' => ['header' => "User-Agent: ".$user."\r\n"]])
 	));
-	if($file) {
+	if ($file) {
 		$update = filter_var($file->tag_name, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 		// Only return a response if the new version number is higher than the current version
 		if($update > $current) {
@@ -162,9 +162,14 @@ function colabsthemes_themes_update_page_set(){
 
 	// Get the latest release tag from the repository. The User-Agent header must be sent, as per
 	// GitHub's API documentation: https://developer.github.com/v3/#user-agent-required
-	$file = @json_decode(@file_get_contents('https://api.github.com/repos/'.$user.'/'.$repo.'/releases/latest', false,
+	$github_url = 'https://api.github.com/repos/'.$user.'/'.$repo.'/releases/latest';
+	$file = json_decode(file_get_contents($github_url, false,
 		stream_context_create(['http' => ['header' => "User-Agent: ".$user."\r\n"]])
 	));
+
+	printf( __('<div style="display:none;">','colabsthemes') );
+	var_dump($file);
+	printf( __('</div>','colabsthemes') );
 
 	$backup = esc_url( add_query_arg(array( 'page' => 'colabsthemes_framework_update','theme_backup'=>'true' )) );
 

@@ -1,19 +1,27 @@
 /*
     Theme Name: Lensa
-    Theme URI: http://colorlabsproject.com/themes/lensa/
+    Theme URI: https://github.com/colorlabsproject/lensa/
+    Theme Upgrade URI: https://github.com/maumoura/lensa/
     Author: ColorLabs & Company
-    Author URI: http://colorlabsproject.com
+    Author URI: https://github.com/colorlabsproject/lensa/
+    Author Upgrade: Mauricio Moura da Silva
+    Author Upgrade URI: https://mauriciomoura.com/
     Release Date: 30 November 2012
     Designer: Andrie Pasca Hendradewa
-    Requirements: WordPress 3.0 or higher, PHP 5
-    Compatibility: WordPress 3.5
+    Requirements: WordPress 6.4 or higher, PHP 7
+    Compatibility: WordPress 6.4+
     Tags: photography, instagram, blog, full-screen, slider, responsive
-    Last Update Date: 06 August 2014
+    Last Update Date: 03 April 2024
 */
 
 /**** Changelog ****/
 
 "Please backup your theme pack files at first before you update the theme into the latest version"
+
+2024.04.03 - Version 1.1.8
+- Lots of fixes, to make it work with WordPress 6+
+  File Affected: too many to list
+  Might work with other versions of WordPress, but was tested only with version 6.4.3 and 6.5
 
 2015.07.06 - Version 1.1.5
 - Add: Pagination for Flickr Gallery
